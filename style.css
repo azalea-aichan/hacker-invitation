@@ -1,0 +1,77 @@
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: #050505;
+  color: #00ff41;
+  font-family: 'Courier New', Courier, monospace;
+  overflow-x: hidden;
+}
+
+#matrix {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  opacity: .35;
+  pointer-events: none;
+}
+
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle, rgba(0,255,65,.06) 1px, transparent 1px) 0 0 / 3px 3px,
+    linear-gradient(rgba(18,16,16,0) 50%, rgba(0,0,0,.25) 50%),
+    linear-gradient(90deg, rgba(255,0,0,.03), rgba(0,255,0,.02), rgba(0,0,255,.03));
+  background-size: 3px 3px, 100% 2px, 6px 100%;
+}
+
+.terminal {
+  position: relative;
+  z-index: 2;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem 6rem;
+  text-shadow: 0 0 2px rgba(0,255,65,.7);
+}
+
+header {
+  margin-bottom: 1.5rem;
+  font-size: .95rem;
+  color: #00ff41;
+}
+
+.prompt { color: #00ff41; }
+.cmd { color: #7ee787; }
+
+#output { font-size: 1rem; line-height: 1.7; white-space: pre-wrap; word-break: break-word; }
+
+.line { display: block; margin: .2rem 0; }
+.line.section { color: #58a6ff; margin-top: 1.2rem; }
+.line.label { color: #ff7b72; }
+.line.value { color: #e6edf3; padding-left: 1.2rem; }
+
+.ruler { margin-top: 2rem; }
+
+.cursor {
+  display: inline-block;
+  width: 10px;
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Scanline animation */
+.crt-overlay::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,0) 50%, rgba(0,0,0,.2) 50%, rgba(0,0,0,.2));
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 3;
+}
